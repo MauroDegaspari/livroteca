@@ -1,12 +1,26 @@
 package com.maurodegaspari.livroteca.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "LIVROS")
 public class LivrosModel {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String titulo;
 	private String nome_autor;
 	private String texto;
 	
+	@ManyToOne
+	@JoinColumn(name = "categoria_id")
 	private CategoriaModel categoria;
 
 	public LivrosModel() {
