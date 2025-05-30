@@ -7,10 +7,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Categoria")
+@Table(name = "Categorias")
 public class CategoriaModel {
 
 	@Id
@@ -19,6 +20,7 @@ public class CategoriaModel {
 	private String nome;
 	private String texto;
 	
+	@OneToMany(mappedBy = "categoria")
 	private List<LivrosModel> livro = new ArrayList<>();
 	
 	public CategoriaModel() {
