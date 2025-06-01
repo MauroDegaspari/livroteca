@@ -1,0 +1,22 @@
+package com.maurodegaspari.livroteca.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+
+import com.maurodegaspari.livroteca.services.DBtesteServices;
+
+@Configuration
+@Profile("dev")
+public class DevConfig {
+	
+	@Autowired
+	DBtesteServices dev;
+	
+	public void chamaInsertBanco() {
+		
+		 this.dev.insertBancoTest();
+		
+	}
+
+}
