@@ -1,5 +1,7 @@
 package com.maurodegaspari.livroteca.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +21,7 @@ public class LivrosModel {
 	private String nome_autor;
 	private String texto;
 	
+	@JsonIgnore // para ignora a categia para evitar a serilização
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
 	private CategoriaModel categoria;
