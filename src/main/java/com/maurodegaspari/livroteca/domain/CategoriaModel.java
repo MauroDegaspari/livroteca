@@ -11,7 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Categorias")
+@Table(name = "CATEGORIAS")
 public class CategoriaModel {
 
 	@Id
@@ -28,7 +28,7 @@ public class CategoriaModel {
 	}
 
 	public CategoriaModel(int id, String nome, String texto) {
-		super();
+		
 		this.id = id;
 		this.nome = nome;
 		this.texto = texto;
