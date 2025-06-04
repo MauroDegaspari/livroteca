@@ -1,4 +1,4 @@
-package com.maurodegaspari.livroteca.domain;
+package com.maurodegaspari.livroteca.model;
 
 import java.util.ArrayList;
 import java.util.List;

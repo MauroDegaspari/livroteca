@@ -18,6 +18,6 @@ public class TstConfig {
 	@PostConstruct // indica que um método deve ser executado automaticamente após o Spring instanciar o bean e injetar as dependências.
 	public void chamaBancoTst() {
 
-		tst.insertBancoTest();
+		this.tst.insertBancoTest();
 	}
 }

@@ -1,4 +1,4 @@
-package com.maurodegaspari.livroteca.domain;
+package com.maurodegaspari.livroteca.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
