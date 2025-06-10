@@ -1,5 +1,6 @@
 package com.maurodegaspari.livroteca.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ public class CategoriaService {
 		Optional<CategoriaModel> categorias = repo.findById(id);
 		
 		return categorias.orElseThrow(() -> new NotFoundException(" Objeto não encontrado!" + id + ", tipo: " + categorias.getClass().getName()));
+	}
+	
+	public List<CategoriaModel> findAll() {
+		return repo.findAll();
 	}
 	
 }
