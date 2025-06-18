@@ -41,6 +41,7 @@ public class CategoriaService {
 		CategoriaModel model = conversao.dtoParaModel(criar);
 
 		model.setId(0);
+		System.out.println(model.getId()+" nome: "+ model.getNome());
 		repo.save(model);
 	
 		return conversao.modelParaDto(model);

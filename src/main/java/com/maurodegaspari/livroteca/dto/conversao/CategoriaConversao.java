@@ -17,8 +17,10 @@ public class CategoriaConversao {
 	
 	
 	public CategoriaModel dtoParaModel(CategoriaDto dto) {
+		System.out.println("dtoParaModel:" +dto.getId()+" nome: "+ dto.getNome()+" texto:"+ dto.getTexto());
 		CategoriaModel model = new CategoriaModel();
 		BeanUtils.copyProperties(dto, model);
+		System.out.println("dtoParaModel2:" +model.getId()+" nome: "+ model.getNome()+" texto:"+ model.getTexto());
 		return model;
 	}
 }
