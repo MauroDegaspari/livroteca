@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,10 +50,16 @@ public class CategoriaController {
 	
 	@PutMapping(value ="/editarCategoria/{id}")
 	public ResponseEntity<CategoriaDto> updateCategoria(@PathVariable int id, @RequestBody CategoriaDto body){
-		
-		CategoriaDto newDto = service.alterarCartegoria(id, body);
+		CategoriaDto newCategoria = service.alterarCartegoria(id, body);
 				
-		return ResponseEntity.ok().body(newDto);
+		return ResponseEntity.ok().body(newCategoria);
+	}
+	
+	@DeleteMapping(value ="deletarCategoria/{id}")
+	public ResponseEntity<Void> deleteCategoria(@PathVariable int id){
+		service.deleteCategoria(id);
+		
+		return ResponseEntity.noContent().build();	
 	}
 	
 

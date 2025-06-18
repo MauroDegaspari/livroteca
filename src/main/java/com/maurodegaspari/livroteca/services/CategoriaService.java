@@ -58,4 +58,12 @@ public class CategoriaService {
 		return conversao.modelParaDto(model);
 	}
 
+	public void deleteCategoria(int id) {
+		 findById(id);
+		 
+		 repo.deleteById(id);
+		 
+		
+	}
+
 }
