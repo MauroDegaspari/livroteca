@@ -23,6 +23,7 @@ public class CategoriaService {
 	@Autowired
 	CategoriaConversao conversao;
 
+	@Transactional(readOnly = true)
 	public CategoriaModel findById(int id) {
 		Optional<CategoriaModel> categorias = repo.findById(id);
 
@@ -39,11 +40,21 @@ public class CategoriaService {
 	@Transactional()
 	public CategoriaDto criarCategoria(CategoriaDto criar) {
 		CategoriaModel model = conversao.dtoParaModel(criar);
-
 		model.setId(0);
-		System.out.println(model.getId()+" nome: "+ model.getNome());
 		repo.save(model);
 	
+		return conversao.modelParaDto(model);
+	}
+
+	@Modifying
+	@Transactional
+	public CategoriaDto alterarCartegoria(int id ,CategoriaDto body) {
+		CategoriaModel model = conversao.dtoParaModel(body);
+		model = findById(id);
+		model.setNome(body.getNome());
+		model.setTexto(body.getTexto());
+		
+		repo.save(model);
 		return conversao.modelParaDto(model);
 	}
 

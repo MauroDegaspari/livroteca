@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.maurodegaspari.livroteca.dto.CategoriaDto;
 import com.maurodegaspari.livroteca.model.CategoriaModel;
 import com.maurodegaspari.livroteca.services.CategoriaService;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/categoria")
@@ -42,11 +40,20 @@ public class CategoriaController {
 	}
 
 	@PostMapping(value = "/criarCategoria")
-	public ResponseEntity<CategoriaDto>  saveCategoria(@Valid @RequestBody CategoriaDto body) {
-		CategoriaDto newCategoria = service.criarCategoria(body);
+	public ResponseEntity<CategoriaDto>  saveCategoria(@RequestBody CategoriaDto body) {
+		service.criarCategoria(body);
 		
-		return ResponseEntity.ok().body(newCategoria);
+		return ResponseEntity.ok().build();
 
 	}
+	
+	@PutMapping(value ="/editarCategoria/{id}")
+	public ResponseEntity<CategoriaDto> updateCategoria(@PathVariable int id, @RequestBody CategoriaDto body){
+		
+		CategoriaDto newDto = service.alterarCartegoria(id, body);
+				
+		return ResponseEntity.ok().body(newDto);
+	}
+	
 
 }
