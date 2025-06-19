@@ -1,11 +1,14 @@
 package com.maurodegaspari.livroteca.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.maurodegaspari.livroteca.model.CategoriaModel;
+
+import jakarta.validation.constraints.NotNull;
 
 public class CategoriaDto {
 
+	@NotNull(message = "Nome não pode ser null")
 	private int id;
+	@NotNull(message = "Nome não pode ser null")
 	private String nome;
 	private String texto;
 	

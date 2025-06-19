@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,10 +28,10 @@ public class CategoriaService {
 	public CategoriaModel findById(int id) {
 		Optional<CategoriaModel> categorias = repo.findById(id);
 
-		return categorias.orElseThrow(() -> new NotFoundException(
-				" Objeto não encontrado!" + id + ", tipo: " + categorias.getClass().getName()));
+		return categorias.orElseThrow(() -> new NotFoundException(" Categoria de ID: " + id + " não encontrado!"));
 	}
 
+	@Transactional(readOnly = true)
 	public List<CategoriaModel> findAll() {
 
 		return repo.findAll();
@@ -40,30 +41,34 @@ public class CategoriaService {
 	@Transactional()
 	public CategoriaDto criarCategoria(CategoriaDto criar) {
 		CategoriaModel model = conversao.dtoParaModel(criar);
-		model.setId(0);
 		repo.save(model);
-	
+
 		return conversao.modelParaDto(model);
 	}
 
 	@Modifying
 	@Transactional
-	public CategoriaDto alterarCartegoria(int id ,CategoriaDto body) {
+	public CategoriaDto alterarCartegoria(int id, CategoriaDto body) {
 		CategoriaModel model = conversao.dtoParaModel(body);
 		model = findById(id);
 		model.setNome(body.getNome());
 		model.setTexto(body.getTexto());
-		
+
 		repo.save(model);
 		return conversao.modelParaDto(model);
 	}
 
+	@Modifying
+	@Transactional()
 	public void deleteCategoria(int id) {
-		 findById(id);
-		 
-		 repo.deleteById(id);
-		 
-		
-	}
+		CategoriaModel model = findById(id);
+		try {
+			repo.delete(model);
 
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("Categoria não pode ser EXCLIUDA, possui livros cadastrados.");
+		}
+
+	}
+	
 }
