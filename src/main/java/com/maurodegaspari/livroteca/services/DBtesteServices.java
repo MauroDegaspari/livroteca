@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.maurodegaspari.livroteca.model.CategoriaModel;
 import com.maurodegaspari.livroteca.model.LivrosModel;
 import com.maurodegaspari.livroteca.repositories.CategoriaRepository;
-import com.maurodegaspari.livroteca.repositories.LivroRepository;
+import com.maurodegaspari.livroteca.repositories.LivrosRepository;
 
 @Service
 public class DBtesteServices {
@@ -17,7 +17,7 @@ public class DBtesteServices {
 	CategoriaRepository repoCate;
 	
 	@Autowired
-	LivroRepository repoLivro;
+	LivrosRepository repoLivro;
 	
 	public void insertBancoTest() {
 

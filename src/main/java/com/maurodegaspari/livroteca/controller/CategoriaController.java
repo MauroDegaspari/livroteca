@@ -33,7 +33,7 @@ public class CategoriaController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<CategoriaDto>> findAl() {
+	public ResponseEntity<List<CategoriaDto>> findAll() {
 		List<CategoriaModel> list = service.findAll();
 		List<CategoriaDto> listDto = list.stream().map(obj -> new CategoriaDto(obj)).collect(Collectors.toList());
 
