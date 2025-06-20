@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.maurodegaspari.livroteca.dto.LivrosDto;
 import com.maurodegaspari.livroteca.dto.conversao.LivrosConversao;
-import com.maurodegaspari.livroteca.exceptions.NoSuchElementException;
+import com.maurodegaspari.livroteca.exceptions.NotFoundException;
 import com.maurodegaspari.livroteca.model.LivrosModel;
 import com.maurodegaspari.livroteca.repositories.LivrosRepository;
 
@@ -32,11 +32,12 @@ public class LivrosServices {
 
 		try {
 			if (!model.isPresent()) {
-				throw new NoSuchElementException("Livro com Id: " + model.get().getId() + " não encontrado.");
+				throw new NotFoundException("Livro não encontrado.");
 			}
 
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			throw new NotFoundException(e.getMessage());
 		}
 
 		BeanUtils.copyProperties(model.get(), dto);
