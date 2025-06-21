@@ -1,5 +1,6 @@
 package com.maurodegaspari.livroteca.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -18,11 +19,13 @@ public class LivrosServices {
 
 	private LivrosRepository repo;
 	private LivrosConversao conversao;
+	private CategoriaService categoria;
 
 	@Autowired
-	public LivrosServices(LivrosRepository repo, LivrosConversao conversao) {
+	public LivrosServices(LivrosRepository repo, LivrosConversao conversao, CategoriaService categoria) {
 		this.repo = repo;
 		this.conversao = conversao;
+		this.categoria = categoria;
 	}
 
 	@Transactional(readOnly = true)
@@ -43,5 +46,12 @@ public class LivrosServices {
 		BeanUtils.copyProperties(model.get(), dto);
 
 		return Optional.of(dto);
+	}
+	
+	
+	public List<LivrosDto> todosLivrosCategoria(int id) {
+		categoria.findById(id);
+		List<LivrosDto> livrosPorCategorias = repo.acharLivrosCategorias(id);
+		return livrosPorCategorias;
 	}
 }
