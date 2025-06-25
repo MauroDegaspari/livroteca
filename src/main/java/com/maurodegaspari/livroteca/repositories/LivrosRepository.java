@@ -11,7 +11,11 @@ import com.maurodegaspari.livroteca.model.LivrosModel;
 
 public interface LivrosRepository extends JpaRepository<LivrosModel, Integer> {
 
-	@Query(value = "SELECT * FROM livros WHERE id = :id_categoria ", nativeQuery = true)
+	@Query(value = "SELECT id, "
+			     + "       titulo,"
+			     + "       nome_autor "
+			     + "  FROM livros"
+			     + " WHERE categoria_id = :id_categoria ", nativeQuery = true)
 	List<LivrosDto> acharLivrosCategorias(@Param(value = "id_categoria")int id_categoria);
 
 }

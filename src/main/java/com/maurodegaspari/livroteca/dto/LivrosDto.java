@@ -6,6 +6,7 @@ public class LivrosDto {
 	private String titulo;
 	private String nome_autor;
 	private String texto;
+	private int categoria_id;
 	
 	public LivrosDto() {
 		super();
@@ -18,6 +19,15 @@ public class LivrosDto {
 		this.nome_autor = nome_autor;
 		this.texto = texto;
 	}
+	
+	public LivrosDto(int id, String titulo, String autor) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.nome_autor = autor;
+	}
+	
+	
 
 	public int getId() {
 		return id;
