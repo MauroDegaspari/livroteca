@@ -54,4 +54,24 @@ public class LivrosServices {
 		List<LivrosDto> livrosPorCategorias = repo.acharLivrosCategorias(id);
 		return livrosPorCategorias;
 	}
+
+	public void deleteLivro(int id) {
+		Optional<LivrosModel> model = repo.findById(id);		
+		
+		try {
+			
+			if (model.isEmpty()) {
+				throw new NotFoundException("Livro não encontrado para deletar");
+			}else {
+				repo.deleteById(id);
+				
+			}
+				
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NotFoundException(e.getMessage());
+		}
+		
+	}
 }
