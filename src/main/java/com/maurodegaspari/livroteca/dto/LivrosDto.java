@@ -1,25 +1,30 @@
 package com.maurodegaspari.livroteca.dto;
 
+import com.maurodegaspari.livroteca.model.CategoriaModel;
+
 public class LivrosDto {
 	
 	private int id;
 	private String titulo;
 	private String nome_autor;
 	private String texto;
-	private int categoria_id;
+	private CategoriaModel categoria_id;
 	
 	public LivrosDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public LivrosDto(int id, String titulo, String nome_autor, String texto) {
+
+	public LivrosDto(int id, String titulo, String nome_autor, String texto, CategoriaModel categoria_id) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.nome_autor = nome_autor;
 		this.texto = texto;
+		this.categoria_id = categoria_id;
 	}
-	
+
+
 	public LivrosDto(int id, String titulo, String autor) {
 		super();
 		this.id = id;
@@ -52,6 +57,14 @@ public class LivrosDto {
 	}
 	public void setTexto(String texto) {
 		this.texto = texto;
+	}
+
+	public CategoriaModel getCategoria_id() {
+		return categoria_id;
+	}
+
+	public void setCategoria_id(CategoriaModel categoria_id) {
+		this.categoria_id = categoria_id;
 	}
 	
 	
