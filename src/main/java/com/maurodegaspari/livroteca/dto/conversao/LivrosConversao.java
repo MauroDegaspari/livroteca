@@ -18,6 +18,8 @@ public class LivrosConversao {
 	public LivrosModel dotParaModel( LivrosDto dto) {
 		LivrosModel model = new  LivrosModel();
 		BeanUtils.copyProperties(dto, model);
+		if (model.getCategoria() == null)
+			model.setCategoria(dto.getCategoria_id());
 		return model;
 	}
 

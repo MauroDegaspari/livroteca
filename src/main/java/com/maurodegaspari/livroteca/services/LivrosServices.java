@@ -45,7 +45,9 @@ public class LivrosServices {
 		}
 
 		BeanUtils.copyProperties(model.get(), dto);
-
+		if (dto.getCategoria_id() == null)
+			dto.setCategoria_id(model.get().getCategoria());
+		
 		return Optional.of(dto);
 	}
 	
@@ -79,17 +81,17 @@ public class LivrosServices {
 	@Modifying
 	@Transactional
 	public LivrosDto updateLivro(int id, LivrosDto obj) {
-		LivrosDto dtoObj = findById(id).get();
-		LivrosModel newObj = conversao.dotParaModel(dtoObj);
+		LivrosDto newObj = findById(id).get();
 		updateData(newObj, obj);
-		return conversao.modelparaDto(newObj);
+		return newObj;
 	}
 
-	private void updateData(LivrosModel newObj ,LivrosDto obj) {
+	private void updateData(LivrosDto newObj ,LivrosDto obj) {
 		newObj.setTitulo(obj.getTitulo());
 		newObj.setNome_autor(obj.getNome_autor());
 		newObj.setTexto(obj.getTexto());
-		repo.save(newObj);
+		
+		repo.save(conversao.dotParaModel(newObj));
 		
 	}
 }
