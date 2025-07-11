@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.maurodegaspari.livroteca.dto.LivrosDto;
 import com.maurodegaspari.livroteca.dto.conversao.LivrosConversao;
 import com.maurodegaspari.livroteca.exceptions.NotFoundException;
+import com.maurodegaspari.livroteca.model.CategoriaModel;
 import com.maurodegaspari.livroteca.model.LivrosModel;
 import com.maurodegaspari.livroteca.repositories.LivrosRepository;
 
@@ -93,5 +94,13 @@ public class LivrosServices {
 		
 		repo.save(conversao.dotParaModel(newObj));
 		
+	}
+
+	public LivrosDto criarLivro(int id_categoria, LivrosDto obj) {
+		CategoriaModel saveCategoria = categoria.findById(id_categoria);
+		obj.setCategoria_id(saveCategoria);
+		repo.save(conversao.dotParaModel(obj));
+		
+		return obj;
 	}
 }
