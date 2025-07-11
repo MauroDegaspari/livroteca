@@ -18,6 +18,8 @@ import com.maurodegaspari.livroteca.dto.CategoriaDto;
 import com.maurodegaspari.livroteca.model.CategoriaModel;
 import com.maurodegaspari.livroteca.services.CategoriaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/categoria")
 public class CategoriaController {
@@ -49,7 +51,7 @@ public class CategoriaController {
 	}
 	
 	@PutMapping(value ="/editarCategoria/{id}")
-	public ResponseEntity<CategoriaDto> updateCategoria(@PathVariable int id, @RequestBody CategoriaDto body){
+	public ResponseEntity<CategoriaDto> updateCategoria(@Valid @PathVariable int id, @RequestBody CategoriaDto body){
 		CategoriaDto newCategoria = service.alterarCartegoria(id, body);
 				
 		return ResponseEntity.ok().body(newCategoria);

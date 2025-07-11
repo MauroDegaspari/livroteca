@@ -3,12 +3,15 @@ package com.maurodegaspari.livroteca.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "CATEGORIAS")
@@ -17,6 +20,9 @@ public class CategoriaModel {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@NotEmpty(message = "Campo NOME não pode ser vazio")
+	@Length(min = 3 , max = 200, message = "Descrição deve ser entre 3 e 200 caracter")
 	private String nome;
 	private String texto;
 	
