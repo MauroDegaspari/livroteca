@@ -1,0 +1,11 @@
+img{
+    height: 6rem;
+}
+
+.livro1{
+    justify-content: right;
+}
+
+.livro2{
+    justify-content: left;
+}
