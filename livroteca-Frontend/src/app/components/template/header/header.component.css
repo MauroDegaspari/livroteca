@@ -1,11 +1,22 @@
-img{
-    height: 6rem;
+.header {
+    height: 75px;
+    background-color: #8b91b3;
+    display: flex;              /* Adicionado */
+    align-items: center;        /* Centraliza verticalmente */
+    justify-content: space-between; /* Espaço entre os itens */
+    padding: 0 1rem;            /* Espaço nas laterais */
+    
 }
 
-.livro1{
-    justify-content: right;
+img {
+    height: 6rem;             /* Ajuste o tamanho conforme necessário */
 }
 
-.livro2{
-    justify-content: left;
+h1 {
+    
+    color: #ffffff;
+    margin: 0 auto;             /* Centraliza se necessário */
+    text-align: center;
+    flex: 1;                    /* Ocupa espaço central */
+    font: normal 700 2.5rem 'Roboto', sans-serif;
 }
